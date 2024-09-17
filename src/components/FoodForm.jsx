@@ -8,8 +8,23 @@ var predefinedItems = [
     { name: 'Almonds', calories: 7, protein: 0.25 },
     { name: "Chapati", calories: 100, protein: 2.5 },
     { name: "Rice", calories: 240, protein: 4 },
-    { name: "Dal (bowl)", calories: 150, protein: 10 }
-    // Add more predefined items as needed
+    { name: "Dal (bowl)", calories: 150, protein: 10 },
+    { name: "Paneer (100g)", calories: 265, protein: 18 },
+    { name: "Curd (1 cup)", calories: 150, protein: 8.5 },
+    { name: "Samosa", calories: 262, protein: 3.5 },
+    { name: "Poha", calories: 180, protein: 4 },
+    { name: "Idli", calories: 58, protein: 2 },
+    { name: "Dosa", calories: 133, protein: 3.5 },
+    { name: "Vada", calories: 152, protein: 4.5 },
+    { name: "Puri", calories: 101, protein: 1.5 },
+    { name: "Biryani", calories: 290, protein: 12 },
+    { name: "Upma", calories: 250, protein: 5 },
+    { name: "Bhindi (100g)", calories: 33, protein: 2 },
+    { name: "Palak Paneer (bowl)", calories: 180, protein: 10 },
+    { name: "Rajma (bowl)", calories: 210, protein: 9 },
+    { name: "Chole (bowl)", calories: 250, protein: 12 },
+    { name: "Whey Protein (1 scoop)", calories: 150, protein: 25 },
+    // Add more as needed
 ];
 
 const FoodForm = () => {
@@ -25,6 +40,7 @@ const FoodForm = () => {
     const items = useSelector((state) => state.items.items);
 
     useEffect(() => {
+        if (!items) return;
         const additionalItems = items.map(item => ({
             name: item.foodItem,
             calories: item.calories,
@@ -46,12 +62,16 @@ const FoodForm = () => {
         setSuggestions(predefinedItems);
     }, [items]);
 
-    const handleAddItem = () => {
+    const handleAddItem = (e) => {
+        e.preventDefault();
         const capitalize = (str) => {
             if (typeof str !== 'string') return '';
             return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
         };
-
+        if (quantity < 0 || calories < 0 || protein < 0) {
+            setError('Fields should be not negative value');
+            return;
+        }
         if (foodItem && quantity && calories && protein) {
             const updatedItem = {
                 foodItem: capitalize(foodItem),
@@ -70,9 +90,9 @@ const FoodForm = () => {
                 const updatedItems = [...items];
                 updatedItems[existingItemIndex] = {
                     ...updatedItems[existingItemIndex],
-                    quantity: Number(updatedItems[existingItemIndex].quantity) + quantity,
-                    totalCalories: Number(updatedItems[existingItemIndex].totalCalories) + (quantity * calories),
-                    totalProtein: Number(updatedItems[existingItemIndex].totalProtein) + (quantity * protein),
+                    quantity: Number(updatedItems[existingItemIndex].quantity) + Number(quantity),
+                    totalCalories: Number(updatedItems[existingItemIndex].totalCalories) + Number(Number(quantity) * calories),
+                    totalProtein: Number(updatedItems[existingItemIndex].totalProtein) + Number(Number(quantity) * protein),
                 };
                 dispatch(updateItems(updatedItems));
             } else {
@@ -123,14 +143,14 @@ const FoodForm = () => {
         <div >
             <h2 className="text-xl font-bold mb-4">Enter Your Food Intake</h2>
             <form onSubmit={handleAddItem} className="space-y-4">
-                <div>
+                <div >
                     <label className="block text-lg font-medium text-gray-700">Food Item:</label>
                     <input
                         type="text"
                         value={foodItem}
                         onChange={handleFoodItemChange}
                         onFocus={() => setInputFocused(true)}
-                        onBlur={() => setTimeout(() => setInputFocused(false), 100)}
+                        onBlur={() => setTimeout(() => setInputFocused(false), 1000)}
                         className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         placeholder="Enter food item"
                     />

@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import itemReducer from './slices/itemSlice';
-import bodyFeaturesReducer from './slices/bodyFeaturesSlice';
+import authReducer from './slices/authSlice';
 
 const persistConfig = {
     key: 'root',
@@ -13,7 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     items: itemReducer,
-    bodyFeatures: bodyFeaturesReducer,
+    auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

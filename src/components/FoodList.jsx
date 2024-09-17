@@ -4,9 +4,9 @@ const FoodList = () => {
     const items = useSelector((state) => state.items.items);
 
     return (
-        <div className="mt-8">
+        <div className="mt-8 space-x-3">
             <h2 className="text-xl font-semibold text-gray-800">Added Items:</h2>
-            {items.length > 0 ? (
+            {items && items.length > 0 ? (
                 <ul className="mt-4 space-y-2">
                     {items.map((item, index) => (
                         <li

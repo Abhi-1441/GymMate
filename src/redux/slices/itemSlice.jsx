@@ -27,9 +27,14 @@ const itemSlice = createSlice({
             state.totalProtein = state.items.reduce((total, item) => total + item.totalProtein, 0);
             state.totalCalories = state.items.reduce((total, item) => total + item.totalCalories, 0);
         },
+        clearItems: (state, action) => {
+            state.items = [];
+            state.totalCalories = 0;
+            state.totalProtein = 0;
+        }
 
     },
 });
 
-export const { addItem, updateItems } = itemSlice.actions;
+export const { addItem, updateItems, clearItems } = itemSlice.actions;
 export default itemSlice.reducer;
