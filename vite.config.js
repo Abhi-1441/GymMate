@@ -4,7 +4,7 @@
 // // https://vitejs.dev/config/
 // export default defineConfig({
 //   plugins: [react()],
-//   base: '/GymMate/',
+// base: '/GymMate/',
 //   define: {
 //     'process.env': {},
 //   },
@@ -21,6 +21,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/GymMate/',
   build: {
     rollupOptions: {
       external: ['@react-oauth/google'], // Add the module to the external list
