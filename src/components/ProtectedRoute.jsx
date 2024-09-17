@@ -8,7 +8,7 @@ const PrivateRoute = () => {
 
     useEffect(() => {
         if (!authToken) {
-            toast.error('User must LogIn to use this functionality.');
+            toast.error('User must Login to use this functionality.');
         }
     }, [authToken]);
 

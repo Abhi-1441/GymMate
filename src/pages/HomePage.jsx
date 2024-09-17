@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const HomePage = () => {
     return (
-        <div className="min-h-screen w-full flex justify-center items-center py-8">
+        <div className="w-full flex justify-center items-center md:py-8 ">
             <div className="h-auto w-full sm:w-3/4 md:w-1/2 lg:w-5/12 flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-200 p-8 sm:p-12 border rounded-lg shadow-md">
                 <motion.h1
                     className="text-3xl sm:text-4xl font-bold mb-4 text-blue-600 text-center"

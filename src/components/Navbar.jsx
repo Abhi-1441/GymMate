@@ -15,8 +15,11 @@ const Navbar = () => {
 
     return (
         <nav className="bg-gray-800 text-white p-4">
-            <div className="container mx-auto flex justify-between items-center px-6 md:px-20">
-                <Link to="/" className="text-xl text-white hover:text-gray-400">GymMate</Link>
+            <div className="container mx-auto flex justify-between items-center md:px-12 ">
+                <div className='flex justify-center items-center space-x-1'>
+                    <img src="GymMate.png" alt="" className='h-16' />
+                    <Link to="/" className="text-xl text-white hover:text-gray-400">GymMate</Link>
+                </div>
 
                 {/* Hamburger menu for mobile */}
                 <button

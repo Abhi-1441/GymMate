@@ -36,7 +36,7 @@ const CheckProteinRequirement = () => {
     };
 
     return (
-        <div className="p-6 md:p-8 lg:p-12 max-w-3xl mx-auto">
+        <div className="p-6 md:p-8 lg:p-12 max-w-3xl mx-auto bg-gradient-to-b from-gray-50 to-gray-200 rounded-lg">
             <h1 className="text-2xl font-bold mb-6 text-center md:text-left">Check Your Protein Requirement</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 

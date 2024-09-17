@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, updateItems } from '../redux/slices/itemSlice';
 
 var predefinedItems = [
-    { name: 'Chicken Breast', calories: 165, protein: 31 },
+    { name: 'Chicken breast', calories: 165, protein: 31 },
     { name: 'Egg', calories: 78, protein: 6 },
     { name: 'Almonds', calories: 7, protein: 0.25 },
     { name: "Chapati", calories: 100, protein: 2.5 },
-    { name: "Rice", calories: 240, protein: 4 },
-    { name: "Dal (bowl)", calories: 150, protein: 10 },
+    { name: "Rice (1 bowl)", calories: 240, protein: 4 },
+    { name: "Dal (1 bowl)", calories: 150, protein: 10 },
     { name: "Paneer (100g)", calories: 265, protein: 18 },
     { name: "Curd (1 cup)", calories: 150, protein: 8.5 },
     { name: "Samosa", calories: 262, protein: 3.5 },
@@ -19,12 +19,16 @@ var predefinedItems = [
     { name: "Puri", calories: 101, protein: 1.5 },
     { name: "Biryani", calories: 290, protein: 12 },
     { name: "Upma", calories: 250, protein: 5 },
-    { name: "Bhindi (100g)", calories: 33, protein: 2 },
-    { name: "Palak Paneer (bowl)", calories: 180, protein: 10 },
-    { name: "Rajma (bowl)", calories: 210, protein: 9 },
-    { name: "Chole (bowl)", calories: 250, protein: 12 },
-    { name: "Whey Protein (1 scoop)", calories: 150, protein: 25 },
-    // Add more as needed
+    { name: "Bhindi (1 bowl)", calories: 33, protein: 2 },
+    { name: "Palak paneer (1 bowl)", calories: 180, protein: 10 },
+    { name: "Rajma (1 bowl)", calories: 210, protein: 9 },
+    { name: "Chole (1 bowl)", calories: 250, protein: 12 },
+    { name: "Whey protein (1 scoop)", calories: 150, protein: 25 },
+    { name: "2 whole eggs omlette", calories: 150, protein: 12 },
+    { name: "Walnut", calories: 26.2, protein: 0.6 },
+    { name: "Cashew", calories: 5.5, protein: 0.18 },
+    { name: "Milk (1 cup/ 250ml)", calories: 150, protein: 8 },
+
 ];
 
 const FoodForm = () => {
@@ -114,7 +118,7 @@ const FoodForm = () => {
     };
 
     const handleFoodItemChange = (e) => {
-        const charLimit = 20;
+        const charLimit = 39;
         if (e.target.value.length > charLimit) {
             setError(`Item name should have less than ${charLimit + 1} characters`)
             return;
