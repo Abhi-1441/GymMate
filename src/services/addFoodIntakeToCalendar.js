@@ -10,6 +10,16 @@ const addFoodIntakeToCalendar = async (authToken, title, items, date) => {
     }
 
     const foodItemsDescription = items.items.map(item => `${item.foodItem} (X ${item.quantity})`).join(', ');
+    if (date) {
+
+        date = new Date(date);
+        const now = new Date();
+
+        date.setHours(now.getHours());
+        date.setMinutes(now.getMinutes());
+        date.setSeconds(now.getSeconds());
+        date.setMilliseconds(now.getMilliseconds());
+    }
 
     const eventDetails = {
         summary: `${title} : ${items.totalCalories}cal & ${items.totalProtein}g protein`,
