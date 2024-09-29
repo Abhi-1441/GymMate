@@ -17,7 +17,9 @@ const Navbar = () => {
         <nav className="bg-gray-800 text-white p-4">
             <div className="container mx-auto flex justify-between items-center md:px-12 ">
                 <div className='flex justify-center items-center space-x-1'>
-                    <img src="GymMate.png" alt="" className='h-16' />
+                    <Link to="/">
+                        <img src="GymMate.png" alt="" className='h-16' />
+                    </Link>
                     <Link to="/" className="text-xl text-white hover:text-gray-400">GymMate</Link>
                 </div>
 

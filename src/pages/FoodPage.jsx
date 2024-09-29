@@ -3,6 +3,7 @@ import FoodForm from '../components/FoodForm';
 import FoodList from '../components/FoodList';
 import TotalIntake from '../components/TotalIntake';
 import AddToCalendarButton from '../components/AddToCalendarButton';
+import PurgeItemsButton from '../components/PurgeItemsButton';
 
 const FoodPage = () => (
     <div className="p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center min-h-screen">
@@ -11,6 +12,7 @@ const FoodPage = () => (
             <FoodForm />
             <FoodList />
             <TotalIntake />
+            <PurgeItemsButton />
             <AddToCalendarButton />
         </div>
     </div>

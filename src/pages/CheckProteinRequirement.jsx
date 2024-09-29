@@ -7,9 +7,28 @@ const CheckProteinRequirement = () => {
     const [gender, setGender] = useState('');
     const [exerciseFrequency, setExerciseFrequency] = useState('');
     const [proteinRequirement, setProteinRequirement] = useState(null);
+    const [errors, setErrors] = useState({});
+
+    // Function to validate inputs
+    const validateInputs = () => {
+        const newErrors = {};
+        if (!weight || weight <= 0) newErrors.weight = "Please enter a valid weight.";
+        if (!height || height <= 0) newErrors.height = "Please enter a valid height.";
+        if (!age || age <= 0) newErrors.age = "Please enter a valid age.";
+        if (!gender) newErrors.gender = "Please select a gender.";
+        if (!exerciseFrequency) newErrors.exerciseFrequency = "Please select your exercise frequency.";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     // Function to calculate protein requirement
     const calculateProteinRequirement = () => {
+        if (!validateInputs()) {
+            setProteinRequirement(null);
+            return; // Return if validation fails 
+        }
+
         let baseProtein = 0.8; // base protein intake in grams per kg of body weight
 
         switch (exerciseFrequency) {
@@ -47,9 +66,10 @@ const CheckProteinRequirement = () => {
                         type="number"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
-                        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className={`w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none ${errors.weight ? 'border-red-500' : ''}`}
                         placeholder="Enter your weight in kg"
                     />
+                    {errors.weight && <p className="text-red-500 text-sm mt-1">{errors.weight}</p>}
                 </div>
 
                 {/* Height Input */}
@@ -59,9 +79,10 @@ const CheckProteinRequirement = () => {
                         type="number"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
-                        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className={`w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none ${errors.height ? 'border-red-500' : ''}`}
                         placeholder="Enter your height in cm"
                     />
+                    {errors.height && <p className="text-red-500 text-sm mt-1">{errors.height}</p>}
                 </div>
 
                 {/* Age Input */}
@@ -71,9 +92,10 @@ const CheckProteinRequirement = () => {
                         type="number"
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
-                        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className={`w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none ${errors.age ? 'border-red-500' : ''}`}
                         placeholder="Enter your age"
                     />
+                    {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
                 </div>
 
                 {/* Gender Dropdown */}
@@ -82,12 +104,13 @@ const CheckProteinRequirement = () => {
                     <select
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}
-                        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className={`w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none ${errors.gender ? 'border-red-500' : ''}`}
                     >
                         <option value="">Select gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
+                    {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
                 </div>
 
                 {/* Exercise Frequency Dropdown */}
@@ -96,7 +119,7 @@ const CheckProteinRequirement = () => {
                     <select
                         value={exerciseFrequency}
                         onChange={(e) => setExerciseFrequency(e.target.value)}
-                        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className={`w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none ${errors.exerciseFrequency ? 'border-red-500' : ''}`}
                     >
                         <option value="">Select exercise frequency</option>
                         <option value="sedentary">Sedentary (little or no exercise)</option>
@@ -104,6 +127,7 @@ const CheckProteinRequirement = () => {
                         <option value="moderate">Moderate exercise (3-5 times a week)</option>
                         <option value="intense">Intense exercise (6-7 times a week)</option>
                     </select>
+                    {errors.exerciseFrequency && <p className="text-red-500 text-sm mt-1">{errors.exerciseFrequency}</p>}
                 </div>
             </div>
 
